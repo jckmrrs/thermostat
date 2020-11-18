@@ -10,19 +10,23 @@
   <link rel="stylesheet" style="text/css" href="css/style.css">
 </head>
 
-<body>
+<body onload = 'thermostat = new Thermostat()'>
   <center>
+    <script src="../../src/thermostat.js">
+    document.getElementById('temperature2').innerHTML = thermostat.currentTemperature();
+    </script>
+
     <div class="homepage">
       <h1> Thermostat </h1>
-      <h2 id='temperature'>20C</h2>
-      <button id='temp-down'>-</button>
-      <button id='temp-reset' onclick='thermostat.reset()'>Reset</button>
-      <button id='temp-up'>+</button>
+      <h2 id='temperature'><span id="temperature2"></span></h2>
+      <!-- it is not displaying the temperature -->
+      <button id='temp-down'onclick= thermostat.down()>-</button>
+      <button id='temp-reset'onclick= thermostat.reset()>Reset</button>
+      <button id='temp-up' onclick= thermostat.up() >+</button>
       <h3>Energy Usage: <span id='energy-usage'>Medium</span></h3>
-      <button id='psm'>Power Save Mode</button>
+      <button id='psm' onclick= thermostat.psmToggle()>Power Save Mode</button>
     </div>
   </center>
 </body>
-<script type="text/javascript" src="../../src/thermostat.js"></script>
 
 </html>
