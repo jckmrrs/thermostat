@@ -12,17 +12,17 @@
 
 <body>
   <center>
-    <div class = "homepage">
+    <div class="homepage">
       <h1> Thermostat </h1>
-      <h2 id = 'temperature'>20</h2>
-      <button id= 'temp-down'>-</button>
-      <button id= 'temp-reset'>Reset</button>
-      <button id= 'temp-up'>+</button>
-      <h2 id = 'energy-usage'>medium-usage</h2>
-      <button id= 'psm'>Power Save Mode</button>
+      <h2 id='temperature'>20C</h2>
+      <button id='temp-down'>-</button>
+      <button id='temp-reset' onclick='thermostat.reset()'>Reset</button>
+      <button id='temp-up'>+</button>
+      <h3>Energy Usage: <span id='energy-usage'>Medium</span></h3>
+      <button id='psm'>Power Save Mode</button>
     </div>
   </center>
-  <script src="src/thermostat.js"></script>
 </body>
+<script type="text/javascript" src="../../src/thermostat.js"></script>
 
 </html>

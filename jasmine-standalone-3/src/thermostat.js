@@ -39,3 +39,5 @@ Thermostat.prototype.psmTurnedOn = function() {
 Thermostat.prototype.currentTemperature = function() {
   return this.temp
 }
+
+thermostat = new Thermostat()
