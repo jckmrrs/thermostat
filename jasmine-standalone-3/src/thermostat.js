@@ -46,6 +46,9 @@ class Thermostat {
   currentTemperature() {
     return this._temp;
   }
+  weather(){
+    return 'London'
+  }
 
 };
 

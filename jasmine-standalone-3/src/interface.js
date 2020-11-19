@@ -3,6 +3,7 @@ set_events()
 update_temperature()
 update_energy_usage()
 update_psm()
+weather()
 
 function update_temperature() {
   document.getElementById('temperature').innerHTML = thermostat.currentTemperature();
@@ -60,6 +61,17 @@ function temperature_psm_toggle() {
   update_temperature()
   update_energy_usage()
   update_psm()
+}
+
+async function weather(){
+  let weather = await getWeather('http://api.openweathermap.org/data/2.5/weather?q=london&appid=f33e61fef0219d126120de1bc9bec494&units=metric');
+  document.getElementById('weather').innerHTML = weather.main.temp
+}
+
+function getWeather(url){
+  data = fetch(url)
+   .then(response => response.json())
+  return data;
 }
 
 function set_events() {
