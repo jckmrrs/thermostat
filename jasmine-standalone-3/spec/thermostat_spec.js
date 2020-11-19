@@ -16,7 +16,7 @@ describe("Thermostat", function() {
     })
     it(".maxTemp returns the initial maximum temperature of 25 degrees", function() {
       expect(thermostat.psmTurnedOn()).toEqual(true);
-      expect(thermostat.maxTemp).toEqual(25);
+      expect(thermostat._maxTemp).toEqual(25);
     })
     it(".psmTurnedOn() is true by default", function() {
       expect(thermostat.psmTurnedOn()).toEqual(true);
@@ -35,13 +35,13 @@ describe("Thermostat", function() {
     it("cannot increase the temperature beyond the psm max temp", function() {
       var beforeTemp = thermostat.currentTemperature()
       expect(thermostat.psmTurnedOn()).toEqual(true)
-      expect(function() {thermostat.up((thermostat.maxTemp - beforeTemp) + 1)}).toThrowError("Temperature cannot go above 25")
+      expect(function() {thermostat.up((thermostat._maxTemp - beforeTemp) + 1)}).toThrowError("Temperature cannot go above 25")
     })
     it("cannot increase the temperature beyond the non-psm max temp", function() {
       var beforeTemp = thermostat.currentTemperature()
       thermostat.psmToggle()
       expect(thermostat.psmTurnedOn()).toEqual(false)
-      expect(function() {thermostat.up((thermostat.maxTemp - beforeTemp) + 1)}).toThrowError("Temperature cannot go above 32")
+      expect(function() {thermostat.up((thermostat._maxTemp - beforeTemp) + 1)}).toThrowError("Temperature cannot go above 32")
     })
     it("increases the temperature by default amount", function() {
       var beforeTemp = thermostat.currentTemperature()
@@ -86,16 +86,16 @@ describe("Thermostat", function() {
       expect(thermostat.psmTurnedOn()).toEqual(false);
     })
     it("changes the maximum temperature to 32 when turning off", function() {
-      expect(thermostat.maxTemp).toEqual(25)
+      expect(thermostat._maxTemp).toEqual(25)
       thermostat.psmToggle()
-      expect(thermostat.maxTemp).toEqual(32)
+      expect(thermostat._maxTemp).toEqual(32)
     })
     it("changes the maximum temperature to 25 when turning on", function() {
-      expect(thermostat.maxTemp).toEqual(25)
+      expect(thermostat._maxTemp).toEqual(25)
       thermostat.psmToggle()
-      expect(thermostat.maxTemp).toEqual(32)
+      expect(thermostat._maxTemp).toEqual(32)
       thermostat.psmToggle()
-      expect(thermostat.maxTemp).toEqual(25)
+      expect(thermostat._maxTemp).toEqual(25)
     })
   })
 
@@ -106,28 +106,28 @@ describe("Thermostat", function() {
     it("returns low usage when temperature is 17", function() {
       thermostat.down((thermostat.currentTemperature() - 18) + 1)
       expect(thermostat.currentTemperature()).toEqual(17)
-      expect(thermostat.currentEnergyUsage()).toEqual('low-usage')
+      expect(thermostat.currentEnergyUsage()).toEqual('Low')
     })
     it("returns medium usage when temperature is 18", function() {
       thermostat.down((thermostat.currentTemperature() - 18))
       expect(thermostat.currentTemperature()).toEqual(18)
-      expect(thermostat.currentEnergyUsage()).toEqual('medium-usage')
+      expect(thermostat.currentEnergyUsage()).toEqual('Medium')
     })
     it("returns medium usage when temperature is 24", function() {
       thermostat.up((25 - thermostat.currentTemperature()) - 1)
       expect(thermostat.currentTemperature()).toEqual(24)
-      expect(thermostat.currentEnergyUsage()).toEqual('medium-usage')
+      expect(thermostat.currentEnergyUsage()).toEqual('Medium')
     })
     it("returns medium usage when temperature is 25", function() {
       thermostat.up((25 - thermostat.currentTemperature()))
       expect(thermostat.currentTemperature()).toEqual(25)
-      expect(thermostat.currentEnergyUsage()).toEqual('medium-usage')
+      expect(thermostat.currentEnergyUsage()).toEqual('Medium')
     })
     it("returns high usage when temperature is 26", function() {
       thermostat.psmToggle()
       thermostat.up((26 - thermostat.currentTemperature()))
       expect(thermostat.currentTemperature()).toEqual(26)
-      expect(thermostat.currentEnergyUsage()).toEqual('high-usage')
+      expect(thermostat.currentEnergyUsage()).toEqual('High')
     });
   });
 });
