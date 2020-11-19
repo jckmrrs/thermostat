@@ -21,9 +21,9 @@
       <!-- it is not displaying the temperature -->
       <button id='temp-down' onclick='thermostat.down()'>-</button>
       <button id='temp-reset' onclick='thermostat.reset()'>Reset</button>
-      <button id='temp-up' onclick='thermostat.up(1)'>+</button>
+      <button id='temp-up' onclick='thermostat.up()'>+</button>
       <h3>Energy Usage: <span id='energy-usage'>Medium</span></h3>
-      <button id='psm' onclick='thermostat.psmToggle()'>Power Save Mode</button>
+      Power Save Mode is <strong><span id='psm-status'></span></strong> <button id='psm' onclick='thermostat.psmToggle()'>Toggle</button>
     </div>
   </center>
 </body>

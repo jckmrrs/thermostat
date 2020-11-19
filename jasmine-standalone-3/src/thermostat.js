@@ -27,15 +27,16 @@ class Thermostat {
   }
   psmToggle() {
     this.psmIsOn = !(this.psmIsOn);
-    this.maxTemp = this.psmTurnedOn() == true ? 25 : 32;
+    this.maxTemp = this.psmTurnedOn() ? 25 : 32;
+    if (this.currentTemperature() > this.maxTemp) this.reset(this.maxTemp)
     reload()
   }
-  reset() {
-    this.temp = 20;
+  reset(temp = 20) {
+    this.temp = temp;
     reload()
   }
   currentEnergyUsage() {
-    return this.currentTemperature() < 18 ? 'low-usage' : this.currentTemperature() <= 25 ? 'medium-usage' : 'high-usage';
+    return this.currentTemperature() < 18 ? 'LOW' : this.currentTemperature() <= 25 ? 'MEDIUM' : 'HIGH';
   }
   psmTurnedOn() {
     return this.psmIsOn;
@@ -47,10 +48,12 @@ class Thermostat {
 
 function reload(){
     document.getElementById('temperature').innerHTML = thermostat.currentTemperature();
+    document.getElementById('energy-usage').innerHTML = thermostat.currentEnergyUsage();
+    document.getElementById('psm-status').innerHTML = thermostat.psmTurnedOn() ? 'On' : 'Off';
 }
 
 var thermostat
 window.onload = function() {
 	thermostat = new Thermostat();
-  document.getElementById('temperature').innerHTML = thermostat.currentTemperature();
+  reload();
 };
