@@ -18,14 +18,22 @@
     <div id='mainDiv' class="homepage">
       <h1> Thermostat </h1>
       <h2><span id="temperature"></span></h2>
-      <!-- it is not displaying the temperature -->
-      <button id='temp-down' onclick='thermostat.down()'>-</button>
-      <button id='temp-reset' onclick='thermostat.reset()'>Reset</button>
-      <button id='temp-up' onclick='thermostat.up()'>+</button>
+      <button id='temp-down'>-</button>
+      <button id='temp-reset'>Reset</button>
+      <button id='temp-up'>+</button>
       <h3>Energy Usage: <span id='energy-usage'>Medium</span></h3>
-      Power Save Mode is <strong><span id='psm-status'></span></strong> <button id='psm' onclick='thermostat.psmToggle()'>Toggle</button>
+      Power Save Mode is <strong><span id='psm-status'></span></strong> <button id='psm'>Toggle</button>
+      <br><br>
+      <form id='citySelect'>
+        <input id='cityText' type='text'></input>
+        <input type='submit' value='SEARCH YOUR CITY' class='myButton'></input>
+      </form>
+      <br>
+      Current temperature in <span id="cityName"></span>: <span id='weather'></span>
     </div>
   </center>
+  <script src="../../jquery-3.5.1.min.js"></script>
+  <script src="../../interface.js"></script>
 </body>
 
 </html>
